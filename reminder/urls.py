@@ -9,5 +9,5 @@ urlpatterns = [
 	url(r'^update/(?P<id>\d+)/edit/$', views.update, name='update'),
 	url(r'^list/', views.list, name='list'),
     url(r'^list-tomorrow/', views.tomorrow, name='tomorrow'),
-    url(r'^call_back/', views.voice_callback, name='callback'),
+    url(r'^call_back/', views.voice_callback, name='voicecallback'),
 ]
