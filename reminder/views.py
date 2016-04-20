@@ -145,32 +145,36 @@ def tomorrow(request):
     }
     return render(request, 'reminders/incoming.html', context)
 
+
 def voice_callback(request):
-    if request.method == 'POST':
-        is_active = request.POST.get('isActive', None)
+
+    if request.method == 'GET':
+
+        isActive = str(0)
+
+        is_active = isActive  # request.POST.get('isActive', '')
 
         if is_active == str(0):
-
-            respond = '<?xml version="1.0" encoding="UTF-8"?>'
-            respond += '<Response>'
-            respond += '<Say playBeep="false" >Welcome to the reminder system</Say>'
-            respond += '</Response>'
-
-            resp = HttpResponse(respond, content_type='application/xml')
+            response = '<?xml version="1.0" encoding="UTF-8"?>'
+            response += '<Response>'
+            response += '<Say playBeep="false" >Welcome to the reminder system</Say>'
+            response += '</Response>'
+            resp = HttpResponse(response, content_type='application/xml')
             resp['Cache-Control'] = 'no-cache'
             return resp
 
-        if is_active == str(1):
-            respond = '<?xml version="1.0" encoding="UTF-8"?>'
-            respond += '<Response>'
-            respond += '<Say playBeep="false" >Welcome to m-Tunza.xyz</Say>'
-            respond += '</Response>'
-
-            resp = HttpResponse(respond, content_type='application/xml')
+        elif is_active == str(1):
+            response = '<?xml version="1.0" encoding="UTF-8"?>'
+            response += '<Response>'
+            response += '<Say playBeep="false" >Welcome to m-Tunza.xyz</Say>'
+            response += '</Response>'
+            resp = HttpResponse(response, content_type='application/xml')
             resp['Cache-Control'] = 'no-cache'
             return resp
 
     else:
-        resp = HttpResponse('Bad Request', 400, content_type='application/xml', )
+        resp = HttpResponse(
+            'Bad Request', content_type='application/xml', )
         resp['Cache-Control'] = 'no-cache'
+        print ('No value was received')
         return resp
