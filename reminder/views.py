@@ -152,7 +152,7 @@ def voice_callback(request):
 
         isActive = str(0)
 
-        is_active = isActive  # request.POST.get('isActive', '')
+        is_active = isActive  # request.GET.get('isActive', '')
 
         if is_active == str(0):
             response = '<?xml version="1.0" encoding="UTF-8"?>'
