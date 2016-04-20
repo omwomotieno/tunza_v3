@@ -156,7 +156,7 @@ def voice_callback(request):
             respond += '<Say playBeep="false" >Welcome to the reminder system</Say>'
             respond += '</Response>'
 
-            resp = HttpResponse(respond, 200, content_type='application/xml')
+            resp = HttpResponse(respond, content_type='application/xml')
             resp['Cache-Control'] = 'no-cache'
             return resp
 
@@ -166,7 +166,7 @@ def voice_callback(request):
             respond += '<Say playBeep="false" >Welcome to m-Tunza.xyz</Say>'
             respond += '</Response>'
 
-            resp = HttpResponse(respond, 200, content_type='application/xml')
+            resp = HttpResponse(respond, content_type='application/xml')
             resp['Cache-Control'] = 'no-cache'
             return resp
 
