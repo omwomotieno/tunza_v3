@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ object.name }}{% endblock %}
+
+{% block content %}
+        <div class="row"><br>
+            <div class="col-md-3 col-sm-3">
+                {% if object.name %}
+                    <h3><p>Welcome {{ object.name }}</p></h3>
+                {% endif %}
+
+                {% if object == request.user %}
+                    <!-- Action buttons -->
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 ">
+                        <a class="btn btn-primary btn-block" href="{% url 'users:update' %}"><b>Update Username</b></a>
+                        <a class="btn btn-primary btn-block" href="{% url 'account_email' %}"><b>Manage my Email</b></a>
+                        <a class="btn btn-primary btn-block" href="{% url 'patients:create' %}"><b>Create Patient</b></a>
+                        <a class="btn btn-primary btn-block" href="{% url 'reminders:create' %}"><b>Schedule Reminder</b></a>
+                        <a class="btn btn-primary btn-block" href="{% url 'services:create' %}"><b>Create Service</b></a>
+                        <a class="btn btn-primary btn-block" href="{% url 'reminders:tomorrow' %}"><b>Tomorrow</b></a>
+                        </div>
+                    </div>
+                    <!-- End Action buttons -->
+                {% endif %}
+            </div>
+            <div class="col-sm-9">
+                <div class="well">
+                    <h2>{{ object.username }}</h2>
+                </div>
+                {% block panel %}
+                {% endblock %}
+            </div>
+        </div>
+{% endblock content %}
+

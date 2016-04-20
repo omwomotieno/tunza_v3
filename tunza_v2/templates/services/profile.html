@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ instance_profile.name }}{% endblock %}
+
+{% block content %}
+    <div class="row"><br>
+        <div class="col-sm-6">
+            <!-- Action buttons -->
+            <div class="row">
+                <div class="col-sm-8">
+                        <b>Service Name: </b>{{ instance_profile.service_name }}<br><br>
+                        <b>About Service:</b>{{ instance_profile.service_about }}<br><br>
+                        <b>Link to file: </b>{{ instance_profile.service_url }}<br><br>
+                        <button><a href="{% url 'services:update' id=instance_profile.id %}">Edit</a></button>
+                        <button><a href="{% url 'services:delete' id=instance_profile.id %}">Delete</a></button>
+                        <!-- Your Stuff: Custom user template urls -->
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="jumbotron" style="padding: inherit">
+                        Number of Subscribed patients
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+

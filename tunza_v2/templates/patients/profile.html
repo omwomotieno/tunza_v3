@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ instance_profile.name }}{% endblock %}
+
+{% block content %}
+    <div class="row"><br>
+        <div class="col-sm-4">
+            <div class="row">
+                <button><a href="{% url 'patients:list' %}">Go to patient list</a></button>
+                <button><a href="{% url 'reminders:create' %}">Create schedule</a></button>
+                <br><br>
+                <b>Patient Name: </b>{{ instance_profile.patient_name }}<br><br>
+                <b>Last menstrual date: </b>{{ instance_profile.last_menstrual_date }}<br><br>
+                <b>Expected delivery date: </b>{{ instance_edd }}<br><br>
+                <b>Services Scheduled: </b><br><br>
+                <ol>
+                    {% for obj in service_scheduled %}
+                        <a href="{{ obj.get_absolute_url }}">{{ obj.service_name }}</a><br>
+                    {% endfor %}
+                </ol>
+                <button><a href="{% url 'patients:update' id=instance_profile.id%}">Edit</a></button>
+                <button><a href="{% url 'patients:delete' id=instance_profile.id %}">Delete</a></button>
+            </div>
+        </div>
+        <div class="col-sm-8">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="jumbotron" style="padding: inherit">
+                Chart
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock content %}
+

@@ -1,0 +1,16 @@
+{% extends 'users/user_detail.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block panel %}
+        <div class="row">
+            <div class="col-md-4 col-sm-4" style="color: royalblue; font-size: small">
+                <form action='{% url 'patients:create' %}' method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <b>Save</b>
+                    </button>
+                </form>
+            </div>
+        </div>
+{% endblock %}

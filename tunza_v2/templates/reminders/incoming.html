@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row"><br>
+    <div class="col-md-12 col-sm-12">
+        <b>Schedules due tomorrow:</b>&nbsp;{{ tomorrow_count }} patients
+        <br><br>
+        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>Patient</th>
+                <th>Service</th>
+                <th>Appointment Date</th>
+                <th>Date of Call</th>
+                <th>Time of Call</th>
+                <th>Contact</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for obj in tomorrow_list %}
+                <tr class="gradeX">
+                    <td>{{ obj.patient }}</td>
+                    <td>{{ obj.service }}</td>
+                    <td>{{ obj.appointment_date }}</td>
+                    <td>{{ obj.date_of_call }}</td>
+                    <td>{{ obj.time_of_call }}</td>
+                    <td>{{ obj.patient.patient_contact }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination">
+                        &nbsp;&nbsp;Total Schedule Entries:&nbsp;&nbsp;<b>{{ tomorrow_count }}</b>
+                        &nbsp;&nbsp;
+                        <span class="step-links">
+                            {% if tomorrow_list.has_previous %}
+                                <b><a href="?page={{ tomorrow_list.previous_page_number }}">previous</a></b>
+                            {% endif %}
+
+                            <span class="current">
+                                <b>Page {{ tomorrow_list.number }} of {{ tomorrow_list.paginator.num_pages }}.</b>
+                            </span>
+
+                            {% if tomorrow_list.has_next %}
+                                <b> <a href="?page={{ tomorrow_list.next_page_number }}">next</a></b>
+                            {% endif %}
+                        </span>
+                </div>
+{#        {% for obj in reminder_service %}#}
+{#            {{ obj }}<br>#}
+{#        {% endfor %}#}
+    </div>
+</div>
+{% endblock content %}
+

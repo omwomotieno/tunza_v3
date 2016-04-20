@@ -1,0 +1,17 @@
+{% extends 'users/user_detail.html' %}
+{% load crispy_forms_tags %}
+{% block panel %}
+    <div class="row">
+        <div class="col-md-4 col-sm-4" style="color: royalblue">
+            <form action='{% url 'reminders:create' %}' method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                {{ form.reminderDate.label_tag }} {{ form.reminderDate }}
+                <button type="submit" class="btn btn-primary btn-block">
+                    <b>Save</b>
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
