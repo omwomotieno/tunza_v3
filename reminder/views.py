@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
@@ -81,7 +82,7 @@ def list(request):
     if not request.user.is_authenticated():
         return render(request, '404.html')
     reminder_count = Reminder.objects.count()
-    queryset_list = Reminder.objects.all()
+    queryset_list = Reminder.objects.all().order_by('-date_created')
     # contacts = queryset_list.values_list('patient_id', 'patient__patient_contact')
     query = request.GET.get('q')
     if query:
@@ -147,7 +148,6 @@ def tomorrow(request):
 
 
 def voice_callback(request):
-
     if request.method == 'GET':
 
         isActive = str(1)
@@ -183,11 +183,19 @@ def voice_callback(request):
         print ('No value was received')
         return resp
 
-def check_time(request):
-    reminder_time = Reminder.objects.values('time_of_call')
-    for rem in reminder_time:
-        print rem
-    current_time = datetime.datetime.now().time()
+
+def check_time(request, pk=None):
+    reminder_list = Reminder.objects.get(pk=1)
+    reminder_time = reminder_list
     format = '%I:%M'
+    current_time = datetime.datetime.now().time()
     curr_time = current_time.strftime(format)
-    return HttpResponse(curr_time)
+
+    return HttpResponse(reminder_time)
+
+    # for rem in reminder_time:
+    #     try:
+    #         reminder_service_name = Reminder.objects.values('service__service_name')
+    #         return HttpResponse(reminder_service_name)
+    #     except ObjectDoesNotExist:
+    #         return HttpResponse('Object not found')

@@ -4,6 +4,7 @@ from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Patient
+from reminder.models import Reminder
 from services.models import Service
 from .forms import PatientForm
 import datetime
@@ -52,17 +53,6 @@ def delete(request, id=None):
     return redirect('patients:list')
 
 
-def compliance(request):
-    pass
-    if not request.user.is_authenticated():
-        return render(request, '404.html')
-    # queryset = Patient.objects.all()
-    context = {
-        # 'compliance_list': queryset
-    }
-    return render(request, 'patients/compliance.html', context)
-
-
 def list(request, id=None):
     if not request.user.is_authenticated():
         return render(request, '404.html')
@@ -101,13 +91,16 @@ def profile(request, id=None):
     # instance_weight = get_object_or_404(Weight, id=instance_profile.id)
     lmd = instance_profile.last_menstrual_date
     edd = lmd + datetime.timedelta(days=280)
-    service_list = Service.objects.all()
-    service_scheduled = service_list.filter(reminder__patient=instance_profile)
+    # service_list = Service.objects.all()
+    # service_scheduled = service_list.filter(reminder__patient=instance_profile)
 
+    reminder_list = Reminder.objects.all()
+    appointment = reminder_list.filter(patient=instance_profile)
     context = {
         'instance_profile': instance_profile,
         'instance_edd': edd,
-        'service_scheduled':service_scheduled,
-        # 'instance_weight': instance_weight,
+        'appointment': appointment,
+        # 'service_scheduled': service_scheduled,
+        # 'appointments': appointments,
     }
     return render(request, 'patients/profile.html', context)

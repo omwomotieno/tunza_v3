@@ -2,7 +2,6 @@ from django.conf.urls import url
 from register import views
 
 urlpatterns = [
-	url(r'^compliance/', views.compliance, name='compliance'),
 	url(r'^list/', views.list, name='list'),
 	url(r'^(?P<id>\d+)/$', views.profile, name='profile'),
 

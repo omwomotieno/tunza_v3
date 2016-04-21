@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^patients/', include("register.urls", namespace="patients")),
     url(r'^reminders/', include("reminder.urls", namespace="reminders")),
     url(r'^services/', include("services.urls", namespace="services")),
-    # url(r'^vitals/', include("vitals.urls", namespace="vitals")),
+    url(r'^call_engine/', include("call_engine.urls", namespace="call_engine")),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

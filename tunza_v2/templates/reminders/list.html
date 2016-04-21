@@ -27,6 +27,7 @@
                 <th>Service</th>
                 <th>Contact</th>
                 <th>Response</th>
+                <th>Created on</th>
             </tr>
             </thead>
             <tbody>
@@ -39,6 +40,7 @@
                     <td>{{ obj.service }}</td>
                     <td>{{ obj.patient.patient_contact }}</td>
                     <td>{{ obj.response }}</td>
+                    <td>{{ obj.date_created }}</td>
                 </tr>
             {% endfor %}
             </tbody>
