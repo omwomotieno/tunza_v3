@@ -179,10 +179,3 @@ body {
 .CSSTableGenerator tr:first-child td:last-child {
   border-width: 0px 0px 1px 1px;
 }
-
-.col-md-12 {
-   text-align:center;
-}
-.col-md-12 form {
-   display:inline-block;
-}
