@@ -150,7 +150,9 @@ def voice_callback(request):
 
     if request.method == 'GET':
 
-        isActive = str(0)
+        isActive = str(1)
+
+        link_file = 'http://www.myvoicemailserver.com/audio/vmail.wav'
 
         is_active = isActive  # request.GET.get('isActive', '')
 
@@ -166,7 +168,9 @@ def voice_callback(request):
         elif is_active == str(1):
             response = '<?xml version="1.0" encoding="UTF-8"?>'
             response += '<Response>'
-            response += '<Say playBeep="false" >Welcome to m-Tunza.xyz</Say>'
+            response += '<Play url="'
+            response += link_file
+            response += '"/>'
             response += '</Response>'
             resp = HttpResponse(response, content_type='application/xml')
             resp['Cache-Control'] = 'no-cache'
@@ -178,3 +182,12 @@ def voice_callback(request):
         resp['Cache-Control'] = 'no-cache'
         print ('No value was received')
         return resp
+
+def check_time(request):
+    reminder_time = Reminder.objects.values('time_of_call')
+    for rem in reminder_time:
+        print rem
+    current_time = datetime.datetime.now().time()
+    format = '%I:%M'
+    curr_time = current_time.strftime(format)
+    return HttpResponse(curr_time)

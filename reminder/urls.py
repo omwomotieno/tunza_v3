@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^list/', views.list, name='list'),
     url(r'^list-tomorrow/$', views.tomorrow, name='tomorrow'),
     url(r'^callback/$', views.voice_callback, name='callback'),
+    url(r'^current_time/$', views.check_time, name='current_time'),
 ]
