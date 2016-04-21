@@ -7,7 +7,7 @@ class Service(models.Model):
     service_name = models.CharField(max_length=64)
     service_about = models.CharField(max_length=512)
     service_url = models.URLField(blank=True, null=True, unique=True)
-    service_field = models.FileField(upload_to='service_files')
+    service_file = models.FileField(upload_to='service_files', blank=True)
     created_date = models.DateTimeField(auto_now=True)
     updated_date = models.DateTimeField(auto_now_add=True)
 
