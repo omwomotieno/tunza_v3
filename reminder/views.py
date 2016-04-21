@@ -1,5 +1,4 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
@@ -147,55 +146,3 @@ def tomorrow(request):
     return render(request, 'reminders/incoming.html', context)
 
 
-def voice_callback(request):
-    if request.method == 'GET':
-
-        isActive = str(1)
-
-        link_file = 'http://www.myvoicemailserver.com/audio/vmail.wav'
-
-        is_active = isActive  # request.GET.get('isActive', '')
-
-        if is_active == str(0):
-            response = '<?xml version="1.0" encoding="UTF-8"?>'
-            response += '<Response>'
-            response += '<Say playBeep="false" >Welcome to the reminder system</Say>'
-            response += '</Response>'
-            resp = HttpResponse(response, content_type='application/xml')
-            resp['Cache-Control'] = 'no-cache'
-            return resp
-
-        elif is_active == str(1):
-            response = '<?xml version="1.0" encoding="UTF-8"?>'
-            response += '<Response>'
-            response += '<Play url="'
-            response += link_file
-            response += '"/>'
-            response += '</Response>'
-            resp = HttpResponse(response, content_type='application/xml')
-            resp['Cache-Control'] = 'no-cache'
-            return resp
-
-    else:
-        resp = HttpResponse(
-            'Bad Request', content_type='application/xml', )
-        resp['Cache-Control'] = 'no-cache'
-        print ('No value was received')
-        return resp
-
-
-def check_time(request, pk=None):
-    reminder_list = Reminder.objects.get(pk=1)
-    reminder_time = reminder_list
-    format = '%I:%M'
-    current_time = datetime.datetime.now().time()
-    curr_time = current_time.strftime(format)
-
-    return HttpResponse(reminder_time)
-
-    # for rem in reminder_time:
-    #     try:
-    #         reminder_service_name = Reminder.objects.values('service__service_name')
-    #         return HttpResponse(reminder_service_name)
-    #     except ObjectDoesNotExist:
-    #         return HttpResponse('Object not found')
