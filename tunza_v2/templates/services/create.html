@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block panel %}
         <div class="row">
-            <div class="col-md-4 col-sm-4" style="color: royalblue">
+            <div class="col-sm-12 col-md-12" style="color: royalblue"  >
                 <form action='{% url 'services:create' %}' method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}

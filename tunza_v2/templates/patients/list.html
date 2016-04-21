@@ -5,18 +5,24 @@
 {% block content %}
     <div class="row"><br>
         <div class="col-md-12 col-sm-12">
-            <form method='GET' action='' role="search">
-                <input type="text" name='q'
-                       class="control-group inline" value="{{ request.GET.q }}">
-                <button type="submit" class="btn btn-primary btn-sm space">
-                    <b style="color: white">Search Patient</b>
-                </button>
-                <button class="btn btn-primary btn-sm space">
-                    <a href="{% url 'patients:create' %}">
-                        <b style="color: white">Add Patient</b>
-                    </a>
-                </button>
-            </form>
+            <div class="row">
+                <div class="col-md-10 col-sm-10">
+                    <form method='GET' action='' role="search">
+                        <input type="text" name='q'
+                               class="control-group inline" value="{{ request.GET.q }}">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <b style="color: white">Search Patient</b>
+                        </button>
+                    </form>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <button class="btn btn-primary btn-sm space">
+                        <a href="{% url 'patients:create' %}">
+                            <b style="color: white">Add Patient</b>
+                        </a>
+                    </button>
+                </div>
+            </div>
             <br>
             <div class="CSSTableGenerator">
                 <table>
@@ -39,7 +45,7 @@
                 </table>
             </div>
         </div>
-        <div class="pagination space">
+        <div class="pagination">
             <span class="step-links">
                 {% if patient_list.has_previous %}
                     <b><a href="?page={{ patient_list.previous_page_number }}">previous</a></b>
