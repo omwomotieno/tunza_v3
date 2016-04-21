@@ -10,7 +10,8 @@ class Patient(models.Model):
     anc_number = models.SlugField(max_length=6)
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
     creation_date = models.DateTimeField(auto_now=True)
-    patient_contact = PhoneNumberField(max_length=13)
+    patient_contact = PhoneNumberField(max_length=13,
+                                       help_text="Enter number in this format +2547209XXXXX")
     patient_name = models.CharField(max_length=64)
     national_id = models.BigIntegerField(default=None, unique=True)
     last_menstrual_date = models.DateField()
