@@ -12,6 +12,11 @@ a{
   color: white;
 }
 
+.img_home{
+  width: 100%;
+  opacity: 0.6;
+}
+
 .space {
   margin-left: 30%;
 }

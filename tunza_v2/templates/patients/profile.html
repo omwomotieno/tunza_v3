@@ -11,25 +11,20 @@
                     <b>Patient Name: </b>{{ instance_profile.patient_name }}<br><br>
                     <b>Days to Delivery: </b><br><br>
                     <b>Expected delivery date: </b>{{ instance_edd }}<br><br>
-                    <button class="btn btn-default">
+                    <button class="btn btn-primary btn-sm">
                         <a href="{% url 'patients:update' id=instance_profile.id %}">Edit</a>
                     </button>
-                    <button class="btn btn-default">
+                    <button class="btn btn-primary btn-sm">
                         <a href="{% url 'patients:delete' id=instance_profile.id %}">Delete</a>
                     </button>
+                    <button class="btn btn-primary btn-sm">
+                        <a href="{% url 'patients:list' %}">Patient list</a>
+                    </button>
+                    <button class="btn btn-primary btn-sm">
+                        <a href="{% url 'reminders:create' id=instance_profile.id%}">Book appointment</a>
+                    </button>
                 </div>
-                <br>
-                <button class="btn btn-primary btn-block" style="float: left;">
-                    <a href="{% url 'patients:list' %}">
-                        <b style="color: aliceblue">Go to patient list</b>
-                    </a>
-                </button>
-                <br><br>
-                <button class="btn btn-primary btn-block" style="float: right;">
-                    <a href="{% url 'reminders:create' %}">
-                        <b style="color: aliceblue">Create schedule</b>
-                    </a>
-                </button>
+
             </div>
         </div>
         <div class="col-md-5 col-sm-5">

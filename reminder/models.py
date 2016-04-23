@@ -15,9 +15,6 @@ class Reminder(models.Model):
     time_of_call = models.TimeField()
     response = models.BooleanField(default = False)
     sent_message = models.BooleanField(default = False)
-    message = models.TextField(max_length=300,
-                               help_text="Message to be sent incase the voice file does not play",
-                               blank=True)
 
     def __unicode__(self):
         return '%s' % self.time_of_call
