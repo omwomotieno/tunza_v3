@@ -6,46 +6,49 @@
     <div class="row"><br>
         <div class="col-md-12 col-sm-12">
             <div class="row">
-                <div class="col-md-10 col-sm-10">
+                <div class="col-md-9 col-sm-9">
                     <form method='GET' action='' role="search">
                         <input type="text" name='q'
                                class="control-group inline" value="{{ request.GET.q }}">
                         <button type="submit" class="btn btn-primary btn-sm">
-                            <b style="color: white">Search Patient</b>
+                            <b style="color: white"><i class="fa fa-search"></i>&nbsp;&nbsp;Search Patient</b>
                         </button>
                     </form>
                 </div>
-                <div class="col-md-2 col-sm-2">
-                    <button class="btn btn-primary btn-sm space">
+                <div class="col-md-3 col-sm-3">
+                    <button class="btn btn-primary btn-sm" style="float: right;">
                         <a href="{% url 'patients:create' %}">
-                            <b style="color: white">Add Patient</b>
+                            <i class="fa fa-plus-circle"></i><b> Add Patient</b>
                         </a>
                     </button>
                 </div>
             </div>
             <br>
-            <div class="CSSTableGenerator">
-                <table>
-                    <tr>
-                        <td>Patient Name</td>
-                        <td>National ID</td>
-                        <td>ANC Number</td>
-                        <td>Contact</td>
-                        <td>Last Menstrual Date</td>
-                    </tr>
-                    {% for obj in patient_list %}
-                        <tr>
-                            <td><a href="{{ obj.get_absolute_url }}">{{ obj.patient_name }}</a></td>
-                            <td>{{ obj.national_id }}</td>
-                            <td>{{ obj.anc_number }}</td>
-                            <td>{{ obj.patient_contact }}</td>
-                            <td>{{ obj.last_menstrual }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="CSSTableGenerator">
+                        <table>
+                            <tr>
+                                <td>Patient Name</td>
+                                <td>National ID</td>
+                                <td>ANC Number</td>
+                                <td>Contact</td>
+                                <td>Last Menstrual Date</td>
+                            </tr>
+                            {% for obj in patient_list %}
+                                <tr>
+                                    <td><a href="{{ obj.get_absolute_url }}">{{ obj.patient_name }}</a></td>
+                                    <td>{{ obj.national_id }}</td>
+                                    <td>{{ obj.anc_number }}</td>
+                                    <td>{{ obj.patient_contact }}</td>
+                                    <td>{{ obj.last_menstrual }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="pagination">
+            <div class="pagination">
             <span class="step-links">
                 {% if patient_list.has_previous %}
                     <b><a href="?page={{ patient_list.previous_page_number }}">previous</a></b>
@@ -59,7 +62,9 @@
                     <b> <a href="?page={{ patient_list.next_page_number }}">next</a></b>
                 {% endif %}
             </span>
+            </div>
         </div>
+
     </div>
 {% endblock content %}
 

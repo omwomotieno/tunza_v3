@@ -2,8 +2,8 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block panel %}
-        <div class="row">
-            <div class="col-md-4 col-sm-4" style="color: royalblue; font-size: small">
+        <div class="row div_form">
+            <div class="col-md-8 col-sm-8" style="color: royalblue; font-size: small">
                 <form action='{% url 'patients:create' %}' method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}

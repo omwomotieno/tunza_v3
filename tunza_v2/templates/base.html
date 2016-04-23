@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
 
         <!-- Your stuff: Third-party css libraries go here -->
-
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
         <!-- This file store project specific CSS -->
         <link href="{% static 'css/project.css' %}" rel="stylesheet">
     {% endblock %}
@@ -43,40 +43,60 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-toggleable-xs" id="bs-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about' %}">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'patients:list' %}"><b>Patient</b></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'reminders:list' %}"><b>Schedules</b></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'services:list' %}"><b>Services</b></a>
-                    </li>
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">
+                                 <i class="fa fa-home"></i><b> Home</b>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{% url 'patients:list' %}">
+                                <i class="fa fa-users"></i><b> Patients</b>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'reminders:list' %}">
+                                <i class=" fa fa-calendar"></i><b> Schedules</b>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'services:list' %}">
+                                <i class=" fa fa-file-text-o"></i><b> Services</b>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{% url 'about' %}">
+                                <i class="fa fa-envelope-o"></i><b> About</b>
+                            </a>
+                        </li>
+                    {% endif %}
                 </ul>
 
                 <ul class="nav navbar-nav pull-xs-right">
                     {% if request.user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link"
-                               href="{% url 'users:detail' request.user.username %}">{% trans "My Profile" %}</a>
+                            <b>
+                                <a href="{% url 'users:detail' request.user.username %}">
+                                    <i class="fa fa-user-md"></i>&nbsp;{% trans "My Profile" %}
+                                </a>
+                            </b>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Logout" %}</a>
+                            <a href="{% url 'account_logout' %}">
+                                {% trans "Logout" %} <i class="fa fa-sign-out"></i>
+                            </a>
                         </li>
                     {% else %}
                         <li class="nav-item">
                             <a id="sign-up-link" class="nav-link"
                                href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
                         </li>
+
                         <li class="nav-item">
                             <a id="log-in-link" class="nav-link"
-                               href="{% url 'account_login' %}">{% trans "Log In" %}</a>
+                               href="{% url 'account_login' %}">
+                                {% trans "Log In" %} <i class="fa fa-sign-in"></i>
+                            </a>
                         </li>
                     {% endif %}
                 </ul>
@@ -86,7 +106,7 @@
 </div>
 
 <div class="container">
-
+<br>
     {% if messages %}
         {% for message in messages %}
             <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>

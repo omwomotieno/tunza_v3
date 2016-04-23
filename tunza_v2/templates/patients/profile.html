@@ -7,54 +7,42 @@
     <div class="row"><br>
         <div class="col-md-5 col-sm-5">
             <div class="row">
-                    <div class="row">
-                        <div class="jumbotron" style="padding: 10px">
-                            <b>Patient Name: </b>{{ instance_profile.patient_name }}<br><br>
-                            <b>Last menstrual date: </b>{{ instance_profile.last_menstrual_date }}&nbsp;&nbsp;
-                            <b>Expected delivery date: </b>{{ instance_edd }}<br><br>
-                            <button class="btn btn-default">
-                                <a href="{% url 'patients:update' id=instance_profile.id %}">Edit</a>
-                            </button>
-                            <button class="btn btn-default">
-                                <a href="{% url 'patients:delete' id=instance_profile.id %}">Delete</a>
-                            </button>
-                        </div>
-                    </div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6">
-                        <button class="btn btn-primary btn-block">
-                            <a href="{% url 'patients:list' %}">
-                                <b style="color: aliceblue">Go to patient list</b>
-                            </a>
-                        </button>
-                    </div>
-                    <div class="col-md-6 col-sm-6">
-                        <button class="btn btn-primary btn-block">
-                            <a href="{% url 'reminders:create' %}">
-                                <b style="color: aliceblue">Create schedule</b>
-                            </a>
-                        </button>
-                    </div>
+                <div class="well">
+                    <b>Patient Name: </b>{{ instance_profile.patient_name }}<br><br>
+                    <b>Days to Delivery: </b><br><br>
+                    <b>Expected delivery date: </b>{{ instance_edd }}<br><br>
+                    <button class="btn btn-default">
+                        <a href="{% url 'patients:update' id=instance_profile.id %}">Edit</a>
+                    </button>
+                    <button class="btn btn-default">
+                        <a href="{% url 'patients:delete' id=instance_profile.id %}">Delete</a>
+                    </button>
                 </div>
+                <br>
+                <button class="btn btn-primary btn-block" style="float: left;">
+                    <a href="{% url 'patients:list' %}">
+                        <b style="color: aliceblue">Go to patient list</b>
+                    </a>
+                </button>
+                <br><br>
+                <button class="btn btn-primary btn-block" style="float: right;">
+                    <a href="{% url 'reminders:create' %}">
+                        <b style="color: aliceblue">Create schedule</b>
+                    </a>
+                </button>
             </div>
         </div>
-        <div class="col-md-6 col-sm-6">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="jumbotron" style="padding: 10px">
-                        <b style="color:lime">Pending Appointments </b><br>
-                        <ul>
-                            {% for obj in appointment %}
-                                <a href="{{ obj.service.get_absolute_url }}">
-                                    <b style="color:royalblue">{{ obj.service.service_name }}</b></a>&nbsp;on
-                                <b>{{ obj.appointment_date }}</b>&nbsp;
-                                to be reminded on&nbsp;{{ obj.date_of_call }}&nbsp;
-                                at&nbsp;{{ obj.time_of_call }}<br><br>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <div class="col-md-5 col-sm-5">
+            <b style="color:lime">Pending Appointments </b><br>
+            <ul>
+                {% for obj in appointment %}
+                    <a href="{{ obj.service.get_absolute_url }}">
+                        <b style="color:royalblue">{{ obj.service.service_name }}</b></a>&nbsp;on
+                    <b>{{ obj.appointment_date }}</b>&nbsp;
+                    to be reminded on&nbsp;{{ obj.date_of_call }}&nbsp;
+                    at&nbsp;{{ obj.time_of_call }}<br><br>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 {% endblock content %}

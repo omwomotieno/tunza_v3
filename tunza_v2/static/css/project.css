@@ -4,6 +4,14 @@ body {
   font-size: 1rem;
 }
 
+.pull-right {
+  float: right !important;
+}
+
+a{
+  color: white;
+}
+
 .space {
   margin-left: 30%;
 }

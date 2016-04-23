@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block panel %}
     <div class="row">
-        <div class="col-md-4 col-sm-4" style="color: royalblue">
+        <div class="col-md-8 col-sm-8" style="color: royalblue">
             <form action='{% url 'reminders:create' %}' method="POST">
                 {% csrf_token %}
                 {{ form|crispy }}
