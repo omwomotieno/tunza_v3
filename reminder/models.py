@@ -8,19 +8,15 @@ import datetime
 # Create your models here.
 
 class Reminder(models.Model):
-    patient = models.ForeignKey('register.Patient', on_delete=models.CASCADE)
+    patient = models.ForeignKey('register.Patient', on_delete=models.CASCADE,)
     service = models.ForeignKey('services.Service')
     date_created = models.DateField(auto_now = True)
     appointment_date = models.DateField()
     time_of_call = models.TimeField()
     response = models.BooleanField(default = False)
-    sent_message = models.BooleanField(default = False)
-    message = models.TextField(max_length=300,
-                               help_text="Message to be sent incase the voice file does not play",
-                               blank=True)
 
     def __unicode__(self):
-        return '%s' % self.time_of_call
+        return '%s' % self.patient
 
     def appointment_status(self):
         today = datetime.date.today()
@@ -43,3 +39,16 @@ class Reminder(models.Model):
 
     class Meta:
         verbose_name_plural = 'Reminders'
+
+
+class Appointment_Response(models.Model):
+    patient = models.ForeignKey(Reminder)
+    response_date = models.DateField()
+    state = models.BooleanField(default=False)
+
+    def get_patient(self):
+        got_patient = self.reminder.patient_id
+        return got_patient
+
+    def get_absolute_url(self):
+        return reverse("reminders:response", kwargs={"id": self.id})

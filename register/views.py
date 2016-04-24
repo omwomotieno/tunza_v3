@@ -68,7 +68,7 @@ def list(request, id=None):
             Q(patient_name__icontains=query)
         )
 
-    paginator = Paginator(queryset_order, 8)
+    paginator = Paginator(queryset_order, 10)
     page = request.GET.get('page')
     try:
         patient_list = paginator.page(page)

@@ -2,8 +2,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Reminder
-from .forms import ReminderForm
+from .models import Reminder, Appointment_Response
+from .forms import ReminderForm, AppointmentResponseForm
 import datetime
 
 gestational_period = datetime.timedelta(days=280)
@@ -25,6 +25,20 @@ def profile(request, id=None):
     return render(request, 'reminders/profile.html', context)
 
 
+def appointment_response(request):
+    if not request.user.is_authenticated():
+        return render(request, '404.html')
+    form = AppointmentResponseForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+            return HttpResponseRedirect(instance.get_absolute_url())
+            # messages.success(request, 'Successfully Created')
+    context = {'form': form}
+    return render(request, 'reminders/response.html', context)
+
+
 def create(request):
     '''
     This view creates a new schedule. It captures the patient id, links
@@ -36,7 +50,7 @@ def create(request):
         return render(request, '404.html')
     form = ReminderForm(request.POST or None)
     if request.method == 'POST':
-        if form.is_valid:
+        if form.is_valid():
             instance = form.save(commit=False)
             instance.save()
             return HttpResponseRedirect(instance.get_absolute_url())
@@ -144,5 +158,3 @@ def tomorrow(request):
         'queryset': queryset,
     }
     return render(request, 'reminders/incoming.html', context)
-
-

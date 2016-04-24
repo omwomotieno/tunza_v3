@@ -1,29 +1,43 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 
 {% block title %}{{ reminders }}{% endblock %}
 
 {% block content %}
     <div class="row"><br>
-        <div class="col-sm-4">
+        <div class="col-md-5 col-sm-5">
             <div class="row">
-                <button><a href="{% url 'reminders:list' %}">Go to Reminder list</a></button>
-                <br><br>
+                <br>
                 <b>Patient Name: </b>{{ instance_profile.patient }}<br><br>
-                <b>Appointment date: </b>{{ instance_profile.appointment_date }}<br><br>
-                <b>Services Scheduled:</b>{{ instance_profile.service }}<br><br>
-                <ol>
-                    <li>list here</li>
-                </ol>
-                <button><a href="{% url 'reminders:update' id=instance_profile.id%}">Edit</a></button>
-                <button><a href="{% url 'reminders:delete' id=instance_profile.id %}">Delete</a></button>
+                <b>Appointment date: </b>{{ instance_profile.appointment_date }}<br>
+                <b>Service:</b>{{ instance_profile.service }}<br><br>
+                <button class="btn btn-primary btn-sm">
+                    <a href="{% url 'reminders:update' id=instance_profile.id %}">
+                        Edit
+                    </a>
+                </button>
+                <button class="btn btn-primary btn-sm">
+                    <a href="{% url 'reminders:delete' id=instance_profile.id %}">
+                        Delete
+                    </a>
+                </button>
+                <button class="btn btn-primary btn-sm">
+                    <a href="{% url 'reminders:list' %}">
+                        Reminder list
+                    </a>
+                </button>
+                <br><br>
+                {% block response %}
+                {% endblock %}
             </div>
         </div>
-        <div class="col-sm-8">
+    </div>
+    <div class="col-md-5 col-sm-5">
         <div class="row">
             <div class="col-sm-12">
                 <div class="jumbotron" style="padding: inherit">
-                    
+
                 </div>
             </div>
         </div>
@@ -31,14 +45,14 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="jumbotron" style="padding: inherit">
-                    
+
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="jumbotron" style="padding: inherit">
-                    
+
                 </div>
             </div>
         </div>
