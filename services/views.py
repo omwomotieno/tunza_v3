@@ -14,7 +14,7 @@ def create(request):
         return render(request, '404.html')
     form = ServiceForm(request.POST or None)
     if request.method == 'POST':
-        if form.is_valid:
+        if form.is_valid():
             instance = form.save(commit=False)
             instance.save()
             return HttpResponseRedirect(instance.get_absolute_url())

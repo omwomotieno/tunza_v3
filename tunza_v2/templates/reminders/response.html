@@ -1,17 +1,19 @@
 {% extends 'users/user_detail.html' %}
+{% load staticfiles %}
 {% load crispy_forms_tags %}
+
+{% block admin %}
+{% endblock %}
 {% block panel %}
     <div class="row div_form">
         <div class="col-md-8 col-sm-8" style="color: royalblue; font-size: small;">
-            <form action='{% url 'reminders:create' %}' method="POST">
+            <form action="{% url 'reminders:response' %}" method="POST">
                 {% csrf_token %}
                 {{ form|crispy }}
-                {{ form.reminderDate.label_tag }} {{ form.reminderDate }}
-                <button type="submit" class="btn btn-primary btn-block">
-                    <b>Save</b>
+                <button type="submit" class="btn btn-primary btn-sm">
+                    <b>Save Response</b>
                 </button>
             </form>
         </div>
     </div>
 {% endblock %}
-

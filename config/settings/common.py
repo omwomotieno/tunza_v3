@@ -44,7 +44,7 @@ THIRD_PARTY_APPS = (
 # Apps specific for this project go here.
 LOCAL_APPS = (
     # custom users app
-    'tunza_v2.users', 'register', 'reminder', 'services', 'vitals'
+    'tunza_v2.users', 'register', 'reminder', 'services', 'vitals', 'call_engine',
     # Your stuff: custom apps go here
 )
 

@@ -8,17 +8,31 @@ body {
   float: right !important;
 }
 
-a{
+a {
   color: white;
 }
 
-.img_home{
+.img_home {
   width: 100%;
-  opacity: 0.6;
+  opacity: 0.8;
+}
+
+.padding_jumbotron {
+  background-color:turquoise;
+  padding: 2%;
 }
 
 .space {
   margin-left: 30%;
+}
+
+.awesome-space{
+  margin-left: 10px;
+}
+
+.home_font {
+  font-family: 'Abril Fatface';
+  font-size: 48px;
 }
 
 .more-space {

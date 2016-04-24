@@ -19,6 +19,7 @@
 
         <!-- Your stuff: Third-party css libraries go here -->
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Abril FAt">
         <!-- This file store project specific CSS -->
         <link href="{% static 'css/project.css' %}" rel="stylesheet">
     {% endblock %}
@@ -26,10 +27,20 @@
     {% block angular %}
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
     {% endblock %}
+    <style>
+        .carousel-inner > .item > img,
+        .carousel-inner > .item > a > img {
+            width: 70%;
+            margin: auto;
+        }
+    </style>
 
 </head>
 
 <body style="font-size=12px;">
+{% block carousel %}
+
+{% endblock %}
 
 <div class="m-b">
     <nav class="navbar navbar-dark navbar-static-top bg-inverse">
@@ -46,7 +57,7 @@
                     {% if request.user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'home' %}">
-                                 <i class="fa fa-home"></i><b> Home</b>
+                                <i class="fa fa-home"></i><b> Home</b>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -106,7 +117,7 @@
 </div>
 
 <div class="container">
-<br>
+    <br>
     {% if messages %}
         {% for message in messages %}
             <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
