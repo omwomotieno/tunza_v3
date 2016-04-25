@@ -22,6 +22,7 @@ django-debug-toolbar==1.4
 django-environ==0.4.0
 django-extensions==1.6.1
 django-floppyforms==1.6.1
+django-graphos==0.1.1
 django-model-utils==2.4
 django-phonenumber-field==1.1.0
 django-redis==4.3.0

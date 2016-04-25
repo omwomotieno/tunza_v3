@@ -1,0 +1,3 @@
+* * * * * wget http://www.m-tunza.xyz/call_engine/current_time/
+* * * * * curl http://www.m-tunza.xyz/call_engine/current_time/
+
