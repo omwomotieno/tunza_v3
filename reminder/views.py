@@ -33,7 +33,7 @@ def appointment_response(request):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.save()
-            return HttpResponseRedirect(instance.get_absolute_url())
+            return HttpResponseRedirect('/users/')
             # messages.success(request, 'Successfully Created')
     context = {'form': form}
     return render(request, 'reminders/response.html', context)

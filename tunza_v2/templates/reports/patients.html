@@ -1,1 +1,25 @@
 {% extends 'users/user_detail.html' %}
+{% load staticfiles %}
+{% load chartit %}
+{{ patient_chart|load_charts:"container" }}
+
+{% block panel %}
+<div id='container'></div>
+{% endblock %}
+
+{% block javascript %}
+    <!-- Latest JQuery -->
+{#    <script src="{% static 'js/jquery-1.12.3.js' %}"></script>#}
+
+    <!-- Tether - a requirement for Bootstrap tooltips -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
+
+    <!-- Your stuff: Third-party javascript libraries go here -->
+    <script src="{% static 'js/highcharts.js' %}"></script>
+
+    <!-- place project specific Javascript in this file -->
+    <script src="{% static 'js/project.js' %}"></script>
+{% endblock javascript %}

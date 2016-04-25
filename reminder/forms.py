@@ -4,10 +4,10 @@ from .models import Reminder, Appointment_Response
 
 class ReminderForm(forms.ModelForm):
     appointment_date = forms.DateField(label="Date of Reminder", required=True,
-                                    widget=forms.DateInput(format=('%y-%m-%d'),
+                                    widget=forms.DateInput(format='%y-%m-%d',
                                                            attrs={'type': 'date',}))
     time_of_call = forms.TimeField(label="Time of Call", required=True,
-                                    widget=forms.TimeInput(format=('%I:%M'),
+                                    widget=forms.TimeInput(format='%H:%M',
                                                            attrs={'type': 'time',}))
 
     class Meta:

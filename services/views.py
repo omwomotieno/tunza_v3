@@ -13,11 +13,10 @@ def create(request):
     if not request.user.is_authenticated():
         return render(request, '404.html')
     form = ServiceForm(request.POST or None)
-    if request.method == 'POST':
-        if form.is_valid():
-            instance = form.save(commit=False)
-            instance.save()
-            return HttpResponseRedirect(instance.get_absolute_url())
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        return HttpResponseRedirect(instance.get_absolute_url())
         # messages.success(request, 'Successfully Created')
     context = {'form': form}
     return render(request, 'services/create.html', context)
@@ -33,25 +32,16 @@ def profile(request, id=None):
 
 
 def update(request, id=None):
-    if not request.user.is_authenticated():
-        return render(request, '404.html')
     instance_profile = get_object_or_404(Service, id=id)
-    form = ServiceForm(request.POST or None, instance=instance_profile)
+    form = ServiceForm(request.POST or None, instance = instance_profile)
     if form.is_valid():
-        instance = form.update()
-        # message success
-        return HttpResponseRedirect(instance.get_absolute_url())
+        instance = form.save(commit=False)
+        instance.save()
     context = {
-        'instance_profile': instance_profile,
         'form': form,
+    'instance_profile': instance_profile,
     }
     return render(request, 'services/create.html', context)
-
-
-def update_2(request, id=None):
-    pass
-    if not request.user.is_authenticated():
-        return render
 
 
 def delete(request, id=None):

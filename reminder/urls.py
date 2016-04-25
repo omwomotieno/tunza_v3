@@ -9,5 +9,5 @@ urlpatterns = [
     url(r'^update/(?P<id>\d+)/edit/$', views.update, name='update'),
     url(r'^list/', views.list, name='list'),
     url(r'^list-tomorrow/$', views.tomorrow, name='tomorrow'),
-    url(r'^response/$', views.appointment_response, name='response'),
+    url(r'^response/', views.appointment_response, name='response'),
 ]

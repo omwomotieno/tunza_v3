@@ -13,7 +13,7 @@ class Reminder(models.Model):
     date_created = models.DateField(auto_now = True)
     appointment_date = models.DateField()
     time_of_call = models.TimeField()
-    response = models.BooleanField(default = False)
+    set_on = models.BooleanField(default = True)
 
     def __unicode__(self):
         return '%s' % self.patient

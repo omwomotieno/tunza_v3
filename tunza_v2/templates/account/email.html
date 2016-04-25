@@ -38,11 +38,21 @@
                                 </div>
                             {% endfor %}
 
-                            <div class="buttonHolder">
-                                <button><a href="{% url 'services:create' %}">Create Service</a></button>
-                                <button type="submit" name="action_primary">{% trans 'Make Primary' %}</button>
-                                <button type="submit" name="action_send">{% trans 'Re-send Verification' %}</button>
-                                <button type="submit" name="action_remove">{% trans 'Remove' %}</button>
+                            <div class="well">
+                                <button class="btn btn-primary btn-sm">
+                                    <a href="{% url 'services:create' %}">
+                                        Create Service
+                                    </a>
+                                </button>
+                                <button class="btn btn-primary btn-sm" type="submit" name="action_primary">
+                                    {% trans 'Make Primary' %}
+                                </button>
+                                <button class="btn btn-primary btn-sm" type="submit" name="action_send">
+                                    {% trans 'Re-send Verification' %}
+                                </button><br><br>
+                                <button class="btn btn-primary btn-sm" type="submit" name="action_remove">
+                                    {% trans 'Remove' %}
+                                </button>
                             </div>
 
                         </fieldset>
