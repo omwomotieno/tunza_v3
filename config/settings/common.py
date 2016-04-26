@@ -40,6 +40,7 @@ THIRD_PARTY_APPS = (
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
     'chartit', #django-chartit
+    'graphos', #django-graphos
 )
 
 # Apps specific for this project go here.

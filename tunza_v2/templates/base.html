@@ -28,14 +28,6 @@
     {% block angular %}
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
     {% endblock %}
-    <style>
-        .carousel-inner > .item > img,
-        .carousel-inner > .item > a > img {
-            width: 70%;
-            margin: auto;
-        }
-    </style>
-
 </head>
 
 <body style="font-size=12px;">
@@ -147,7 +139,9 @@
     <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
 
     <!-- Your stuff: Third-party javascript libraries go here -->
-
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.2/jquery.flot.min.js"></script>
+{#    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.2/jquery.flot.categories.min.js"></script>#}
+    <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
     <!-- place project specific Javascript in this file -->
     <script src="{% static 'js/project.js' %}"></script>
 {% endblock javascript %}

@@ -18,7 +18,7 @@ a {
 }
 
 .padding_jumbotron {
-  background-color:turquoise;
+  background-color:royalblue;
   padding: 2%;
 }
 
@@ -28,11 +28,6 @@ a {
 
 .awesome-space{
   margin-left: 10px;
-}
-
-.home_font {
-  font-family: 'Abril Fatface';
-  font-size: 48px;
 }
 
 .more-space {
