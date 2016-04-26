@@ -37,7 +37,7 @@
                             </tr>
                             {% for obj in service_list %}
                                 <tr>
-                                    <td><a href="{{ obj.get_absolute_url }}">{{ obj.service_name }}</a></td>
+                                    <td><a style="color: darkblue;" href="{{ obj.get_absolute_url }}">{{ obj.service_name }}</a></td>
                                     <td>{{ obj.service_about }}</td>
                                     <td>{{ obj.service_url }}</td>
                                 </tr>
@@ -49,7 +49,7 @@
             <div class="pagination">
             <span class="step-links">
                 {% if service_list.has_previous %}
-                    <b><a href="?page={{ service_list.previous_page_number }}">previous</a></b>
+                    <b><a style="color: darkblue;" href="?page={{ service_list.previous_page_number }}">previous</a></b>
                 {% endif %}
 
                 <span class="current">
@@ -57,7 +57,7 @@
                 </span>
 
                 {% if service_list.has_next %}
-                    <b> <a href="?page={{ service_list.next_page_number }}">next</a></b>
+                    <b> <a style="color: darkblue;" href="?page={{ service_list.next_page_number }}">next</a></b>
                 {% endif %}
             </span>
             </div>

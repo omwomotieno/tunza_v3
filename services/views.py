@@ -16,7 +16,7 @@ def create(request):
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
-        return HttpResponseRedirect(instance.get_absolute_url())
+        return HttpResponseRedirect('services/list/')
         # messages.success(request, 'Successfully Created')
     context = {'form': form}
     return render(request, 'services/create.html', context)
@@ -56,7 +56,7 @@ def list(request):
     if not request.user.is_authenticated():
         return render(request, '404.html')
     service_count = Service.objects.count()
-    queryset_list = Service.objects.all()
+    queryset_list = Service.objects.all().order_by('service_name')
 
     query = request.GET.get('q')
     if query:
@@ -64,7 +64,7 @@ def list(request):
             Q(service_name__icontains=query) |
             Q(service_url__icontains=query)
         )
-    paginator = Paginator(queryset_list, 6)
+    paginator = Paginator(queryset_list, 3)
     page = request.GET.get('page')
     try:
         service_list = paginator.page(page)

@@ -45,7 +45,7 @@
                                     <td>{{ obj.appointment_date }}</td>
                                     <td>{{ obj.date_of_call }}</td>
                                     <td>{{ obj.time_of_call }}</td>
-                                    <td><a href="{{ obj.patient.get_absolute_url }}">{{ obj.patient }}</a></td>
+                                    <td><a style="color: darkblue;" href="{{ obj.patient.get_absolute_url }}">{{ obj.patient }}</a></td>
                                     <td>{{ obj.service }}</td>
                                     <td>{{ obj.patient.patient_contact }}</td>
                                     <td>{{ obj.response }}</td>
@@ -59,7 +59,7 @@
             <div class="pagination">
             <span class="step-links">
                 {% if reminder_list.has_previous %}
-                    <b><a href="?page={{ reminder_list.previous_page_number }}">previous</a></b>
+                    <b><a style="color: darkblue;" href="?page={{ reminder_list.previous_page_number }}">previous</a></b>
                 {% endif %}
 
                 <span class="current">
@@ -67,7 +67,7 @@
                 </span>
 
                 {% if reminder_list.has_next %}
-                    <b> <a href="?page={{ reminder_list.next_page_number }}">next</a></b>
+                    <b> <a style="color: darkblue;" href="?page={{ reminder_list.next_page_number }}">next</a></b>
                 {% endif %}
             </span>
             </div>

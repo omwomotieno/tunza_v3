@@ -53,7 +53,7 @@ def create(request):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.save()
-            return HttpResponseRedirect(instance.get_absolute_url())
+            return HttpResponseRedirect('/reminders/list/')
             # messages.success(request, 'Successfully Created')
     context = {'form': form}
     return render(request, 'reminders/create.html', context)
@@ -95,7 +95,7 @@ def list(request):
     if not request.user.is_authenticated():
         return render(request, '404.html')
     reminder_count = Reminder.objects.count()
-    queryset_list = Reminder.objects.all().order_by('-date_created')
+    queryset_list = Reminder.objects.all().order_by('appointment_date','time_of_call')
     # contacts = queryset_list.values_list('patient_id', 'patient__patient_contact')
     query = request.GET.get('q')
     if query:
