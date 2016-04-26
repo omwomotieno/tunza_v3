@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="well">
                     <b>Patient Name: </b>{{ instance_profile.patient_name }}<br><br>
-                    <b>Days to Delivery: </b><br><br>
+{#                    <b>Days to Delivery: </b>{{ instance_delivery }}<br><br>#}
                     <b>Expected delivery date: </b>{{ instance_edd }}<br><br>
                     <button class="btn btn-primary btn-sm">
                         <a href="{% url 'patients:update' id=instance_profile.id %}">Edit</a>
@@ -28,6 +28,7 @@
             </div>
         </div>
         <div class="col-md-5 col-sm-5">
+        {% if appointment %}
             <b style="color:lime">Pending Appointments </b><br>
             <ul>
                 {% for obj in appointment %}
@@ -38,6 +39,9 @@
                     at&nbsp;{{ obj.time_of_call }}<br><br>
                 {% endfor %}
             </ul>
+        {% else %}
+        <b>You have no appointments</b>
+        {% endif %}
         </div>
     </div>
 {% endblock content %}

@@ -90,15 +90,18 @@ def profile(request, id=None):
     instance_profile = get_object_or_404(Patient, id=id)
     # instance_weight = get_object_or_404(Weight, id=instance_profile.id)
     lmd = instance_profile.last_menstrual_date
+    format = '"%m/%d/%Y'
     edd = lmd + datetime.timedelta(days=280)
+    today = datetime.datetime.now().date()
     # service_list = Service.objects.all()
     # service_scheduled = service_list.filter(reminder__patient=instance_profile)
-
+    # days_to_delivery =  datetime.datetime.strftime((edd - today), format)
     reminder_list = Reminder.objects.all()
     appointment = reminder_list.filter(patient=instance_profile)
     context = {
         'instance_profile': instance_profile,
         'instance_edd': edd,
+        # 'instance_delivery': days_to_delivery,
         'appointment': appointment,
         # 'service_scheduled': service_scheduled,
         # 'appointments': appointments,
