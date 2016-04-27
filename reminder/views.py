@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib import messages
 from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
@@ -53,8 +54,8 @@ def create(request):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.save()
+            messages.success(request, 'Appointment Successfully Created')
             return HttpResponseRedirect('/reminders/list/')
-            # messages.success(request, 'Successfully Created')
     context = {'form': form}
     return render(request, 'reminders/create.html', context)
 
@@ -67,7 +68,7 @@ def update(request, id=None):
     if form.is_valid():
         instance = form.update(commit=False)
         instance.update()
-        # message success
+        # messages.success(request, 'Appointment Successfully Updated')
         return HttpResponseRedirect(instance.get_absolute_url())
     context = {
         'instance_profile': instance_profile,
@@ -84,6 +85,7 @@ def delete(request, id=None):
         return render(request, '404.html')
     instance_profile = get_object_or_404(Reminder, id=id)
     instance_profile.delete()
+    messages.success(request, 'Appointment Successfully Deleted')
     return redirect('reminders:list')
 
 

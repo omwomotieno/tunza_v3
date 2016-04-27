@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib import messages
 from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
@@ -16,7 +17,8 @@ def create(request):
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
-        return HttpResponseRedirect('services/list/')
+        messages.success(request, 'Service Successfully Created')
+        return HttpResponseRedirect('/services/list/')
         # messages.success(request, 'Successfully Created')
     context = {'form': form}
     return render(request, 'services/create.html', context)

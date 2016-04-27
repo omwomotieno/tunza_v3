@@ -10,8 +10,10 @@
             <div class="row">
                 <br>
                 <b>Patient Name: </b>{{ instance_profile.patient }}<br><br>
-                <b>Appointment date: </b>{{ instance_profile.appointment_date }}<br>
-                <b>Service:</b>{{ instance_profile.service }}<br><br>
+                <b>Appointment date: </b>
+                {{ instance_profile.appointment_date }}
+                <br><br>
+                <b>Service: </b>{{ instance_profile.service }}<br><br>
                 <button class="btn btn-primary btn-sm">
                     <a href="{% url 'reminders:update' id=instance_profile.id %}">
                         Edit

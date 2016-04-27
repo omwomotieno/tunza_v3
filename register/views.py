@@ -19,6 +19,7 @@ def create(request):
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
+        messages.success(request, 'Patient Successfully Created')
         return HttpResponseRedirect(instance.get_absolute_url())
     context = {'form': form,}
     return render(request, 'patients/create.html', context)
