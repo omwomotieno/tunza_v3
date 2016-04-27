@@ -97,12 +97,12 @@ def list(request):
     if not request.user.is_authenticated():
         return render(request, '404.html')
     reminder_count = Reminder.objects.count()
-    queryset_list = Reminder.objects.all().order_by('appointment_date','time_of_call')
+    queryset_list = Reminder.objects.all().order_by('appointment_date','time_of_call','patient__patient_name')
     # contacts = queryset_list.values_list('patient_id', 'patient__patient_contact')
     query = request.GET.get('q')
     if query:
         queryset_list = queryset_list.filter(
-            Q(appointment_date__day=query)
+            Q(appointment_date=query)
         )
     paginator = Paginator(queryset_list, 8)
     page = request.GET.get('page')
@@ -142,7 +142,8 @@ def tomorrow(request):
     query = request.GET.get('q')
     if query:
         tomorrow_list = tomorrow_list.filter(
-            Q(reminder_date__day=query)
+            Q(patient__patient_name=query)|
+            Q(appointment_date__exact=query)
         )
     paginator = Paginator(tomorrow_list, 6)
     page = request.GET.get('page')

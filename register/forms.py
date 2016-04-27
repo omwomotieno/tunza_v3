@@ -13,7 +13,6 @@ class PatientForm(forms.ModelForm):
     class Meta:
         model = Patient
         fields = [
-            'uuid',
             'anc_number',
             'patient_name',
             'national_id',
