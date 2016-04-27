@@ -13,19 +13,18 @@ def voice_callback(request):
         # queryset_response = Appointment_Response.objects.all()
         # queryset_call = Call_Response.objects.all()
 
-        # retrieving service url from contact
-        callTo = '+254720955704' # request.GET.get('callerNumber', '')
-        call_number = callTo
-        patient_contact = Reminder.objects.filter(patient__patient_contact=call_number)
-        instance_url = patient_contact.values_list('service__service_url', flat=True)
+        # retrieving call_back params
+        is_active = request.GET.get('isActive', '')
+        callTo = request.GET.get('callerNumber', '') # '+254700050144'
 
-        isActive = str(1)
-        is_active = isActive   #request.GET.get('isActive', '')
+        # retrieving service url from callerNumber
+        patient_contact = Reminder.objects.filter(patient__patient_contact=callTo)
+        instance_url = patient_contact.values_list('service__service_url', flat=True)
 
         if is_active == str(0):
             response = '<?xml version="1.0" encoding="UTF-8"?>'
             response += '<Response>'
-            response += '<Say playBeep="false" >Welcome to the reminder system</Say>'
+            response += '<Say playBeep="false" >Thank you</Say>'
             response += '</Response>'
             resp = HttpResponse(response, content_type='application/xml')
             resp['Cache-Control'] = 'no-cache'
