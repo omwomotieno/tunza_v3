@@ -1,7 +1,5 @@
-from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from .models import Call_Response
-from django.shortcuts import get_object_or_404, get_list_or_404
 from reminder.models import Appointment_Response
 from reminder.models import Reminder
 from datetime import timedelta, datetime
@@ -16,21 +14,10 @@ def voice_callback(request):
         # queryset_call = Call_Response.objects.all()
 
         # retrieving service url from contact
-        callTo = request.GET.get('callerNumber', '')
-        # callTo = '+254720955704'
+        callTo = '+254720955704' # request.GET.get('callerNumber', '')
         call_number = callTo
         patient_contact = Reminder.objects.filter(patient__patient_contact=call_number)
         instance_url = patient_contact.values_list('service__service_url', flat=True)
-
-        str(instance_url)
-        # filtering reminders based on call date
-        today = datetime.now().date()
-        difference = timedelta(days=1)
-        call_date = today + difference
-        query_set = Reminder.objects.filter(appointment_date=call_date)
-
-        # instance = query_set.get(id=id)
-        # instance_url = instance.service.service_url
 
         isActive = str(1)
         is_active = isActive   #request.GET.get('isActive', '')
@@ -64,12 +51,10 @@ def voice_callback(request):
 
 
 def check_time(request, id=None):
-    # today = datetime.datetime.today().strftime("%Y-%m-%d")
     today = datetime.now().date()
     difference = timedelta(days=1)
     call_date = today + difference
-    query_set = Reminder.objects.filter(appointment_date=call_date)
-    # appointment_list = get_list_or_404(Reminder, set_on=True)
+    query_set = Reminder.objects.filter(appointment_date=call_date).filter(set_on=True)
     instance = query_set.get(id=60)
     format = '%H:%M'
     instance_contact = instance.patient.patient_contact

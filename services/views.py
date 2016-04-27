@@ -19,7 +19,6 @@ def create(request):
         instance.save()
         messages.success(request, 'Service Successfully Created')
         return HttpResponseRedirect('/services/list/')
-        # messages.success(request, 'Successfully Created')
     context = {'form': form}
     return render(request, 'services/create.html', context)
 
@@ -29,7 +28,9 @@ def profile(request, id=None):
     if not request.user.is_authenticated():
         return render(request, '404.html')
     instance_profile = get_object_or_404(Service, id=id)
-    context = {'instance_profile': instance_profile, }
+    context = {
+        'instance_profile': instance_profile,
+    }
     return render(request, 'services/profile.html', context)
 
 
@@ -41,7 +42,7 @@ def update(request, id=None):
         instance.save()
     context = {
         'form': form,
-    'instance_profile': instance_profile,
+        'instance_profile': instance_profile,
     }
     return render(request, 'services/create.html', context)
 

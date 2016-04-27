@@ -56,7 +56,7 @@ def create(request):
             instance.save()
             messages.success(request, 'Appointment Successfully Created')
             return HttpResponseRedirect('/reminders/list/')
-    context = {'form': form}
+    context = {'form': form,}
     return render(request, 'reminders/create.html', context)
 
 
@@ -102,7 +102,8 @@ def list(request):
     query = request.GET.get('q')
     if query:
         queryset_list = queryset_list.filter(
-            Q(appointment_date=query)
+            Q(patient__patient_name__icontains=query)|
+            Q(service__service_name__icontains=query)
         )
     paginator = Paginator(queryset_list, 8)
     page = request.GET.get('page')

@@ -34,10 +34,6 @@ class Reminder(models.Model):
         call_date = appointment_date - difference
         return call_date
 
-    # def call_url(self):
-    #     url = self.service.service_url
-    #     return url
-
     def get_absolute_url(self):
         return reverse("reminders:profile", kwargs={"id": self.id})
 
