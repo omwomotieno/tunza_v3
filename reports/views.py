@@ -9,6 +9,7 @@ from services.models import Service
 def AppointmentReports(request):
     query_set = Reminder.objects.all()
     context = {
+        'queryset': query_set,
 
     }
     return render(request, 'reports/appointments.html', context)
@@ -41,6 +42,6 @@ def ServiceReports(request):
 def PatientReports(request):
     queryset = Patient.objects.all()
     context = {
-
+        'queryset': queryset,
     }
     return render(request, 'reports/patients.html', context)

@@ -16,7 +16,7 @@ class Service(models.Model):
 
 
     def __unicode__(self):
-        return '%s %s' % self.service_name, self.service_url
+        return '%s' % self.service_name
 
 
     def get_absolute_url(self):

@@ -13,7 +13,11 @@ class ReminderForm(forms.ModelForm):
     class Meta:
         model = Reminder
         fields = [
-            'patient', 'service', 'appointment_date', 'time_of_call',
+            'patient',
+            'service',
+            'appointment_date',
+            'time_of_call',
+            'set_on'
         ]
 
 class AppointmentResponseForm(forms.ModelForm):
@@ -25,5 +29,7 @@ class AppointmentResponseForm(forms.ModelForm):
     class Meta:
         model = Appointment_Response
         fields = [
-            'patient','response_date','state'
+            'patient',
+            'response_date',
+            'state'
         ]

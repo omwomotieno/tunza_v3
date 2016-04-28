@@ -3,9 +3,9 @@ from .models import Patient
 from .forms import PatientForm #WeightForm, BPForm, NoteForm, WeekForm,  SignUpForm
 
 class PatientAdmin(admin.ModelAdmin):
-	list_display = ('anc_number', 'patient_name', 'last_menstrual_date', 'active', 'patient_contact')
+	list_display = ('anc_number', 'patient_name', 'last_menstrual_date', 'discharged', 'patient_contact')
 	list_display_links = ('patient_name',)
-	list_editable = ('patient_contact', 'active',)
+	list_editable = ('patient_contact', 'discharged',)
 	list_per_page = (6)
 	search_fields = ('patient_name', 'anc_number',)
 	form = PatientForm
