@@ -16,6 +16,7 @@ def voice_callback(request):
         # retrieving call_back params
         is_active = request.GET.get('isActive', '')
         callTo = request.GET.get('callerNumber', '') # '+254700050144'
+        callTo = str(callTo)
 
         # retrieving service url from callerNumber
         patient_contact = Reminder.objects.filter(patient__patient_contact=callTo)
