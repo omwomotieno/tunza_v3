@@ -3,6 +3,9 @@
 
 {% block title %}{{ object.name }}{% endblock %}
 
+{% block cs %}
+{% endblock %}
+
 {% block content %}
     <div class="row"><br>
         <div class="col-md-3 col-sm-3">
@@ -24,10 +27,10 @@
                                 Service</b></a>
                             <a class="btn btn-primary btn-block" href="{% url 'reminders:tomorrow' %}"><b>Immediate
                                 Appointments</b></a>
-                            <a class="btn btn-primary btn-block" href=""><b>Call Reports</b></a>
+                            <a class="btn btn-primary btn-block" href="{% url 'reports:response_report' %}"><b>Call Reports</b></a>
                             <a class="btn btn-primary btn-block" href="{% url 'reports:patient_report' %}"><b>Patient Reports</b></a>
-                            <a class="btn btn-primary btn-block" href=""><b>Appointment Reports</b></a>
-                            <a class="btn btn-primary btn-block" href=""><b>Service Reports</b></a>
+                            <a class="btn btn-primary btn-block" href="{% url 'reports:appointment_report' %}"><b>Appointment Reports</b></a>
+                            <a class="btn btn-primary btn-block" href="{% url 'reports:service_report' %}"><b>Service Reports</b></a>
                         </div>
                     </div>
                     <!-- End Action buttons -->
@@ -42,8 +45,8 @@
             {% endblock %}
         </div>
     </div>
-
 {% endblock content %}
-{% block javascript %}
+
+{% block js %}
 {% endblock %}
 

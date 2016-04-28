@@ -39,7 +39,8 @@
                             </tr>
                             {% for obj in patient_list %}
                                 <tr>
-                                    <td><a style="color: darkblue;" href="{{ obj.get_absolute_url }}">{{ obj.patient_name }}</a></td>
+                                    <td><a style="color: darkblue;"
+                                           href="{{ obj.get_absolute_url }}">{{ obj.patient_name }}</a></td>
                                     <td>{{ obj.national_id }}</td>
                                     <td>{{ obj.anc_number }}</td>
                                     <td>{{ obj.patient_contact }}</td>
@@ -53,7 +54,10 @@
             <div class="pagination">
             <span class="step-links">
                 {% if patient_list.has_previous %}
-                    <b><a style="color: darkblue;" href="?page={{ patient_list.previous_page_number }}">previous</a></b>
+                    <a style="color: darkblue;" href="?page={{ patient_list.previous_page_number }}">
+                        <i class="fa fa-chevron-circle-left"></i>
+                        <b>previous</b>
+                    </a>
                 {% endif %}
 
                 <span class="current">
@@ -61,7 +65,10 @@
                 </span>
 
                 {% if patient_list.has_next %}
-                    <b> <a style="color: darkblue;" href="?page={{ patient_list.next_page_number }}">next</a></b>
+                    <a style="color: darkblue;" href="?page={{ patient_list.next_page_number }}">
+                        <i class="fa fa-chevron-circle-right"></i>
+                        <b>next</b>
+                    </a>
                 {% endif %}
             </span>
             </div>

@@ -65,8 +65,11 @@
             <div class="pagination">
             <span class="step-links">
                 {% if reminder_list.has_previous %}
-                    <b><a style="color: darkblue;"
-                          href="?page={{ reminder_list.previous_page_number }}">previous</a></b>
+                    <a style="color: darkblue;"
+                       href="?page={{ reminder_list.previous_page_number }}">
+                        <i class="fa fa-chevron-circle-left"></i>
+                        <b>previous</b>
+                    </a>
                 {% endif %}
 
                 <span class="current">
@@ -74,7 +77,10 @@
                 </span>
 
                 {% if reminder_list.has_next %}
-                    <b> <a style="color: darkblue;" href="?page={{ reminder_list.next_page_number }}">next</a></b>
+                    <a style="color: darkblue;" href="?page={{ reminder_list.next_page_number }}">
+                        <i class="fa fa-chevron-circle-right"></i>
+                        <b>next</b>
+                    </a>
                 {% endif %}
             </span>
             </div>
