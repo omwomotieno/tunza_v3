@@ -1,2 +1,2 @@
-* * * * * wget http://www.m-tunza.xyz/call_engine/current_time/
+* * * * * python /home/ubuntu/work/your-project/src/manage.py runcrons > /home/ubuntu/cronjob.log
 

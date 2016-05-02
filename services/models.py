@@ -4,9 +4,9 @@ from django.db import models
 
 
 class Service(models.Model):
-    service_name = models.CharField(max_length=64)
+    service_name = models.CharField(max_length=64, unique=True)
     service_about = models.CharField(max_length=512)
-    service_url = models.URLField(blank=True, null=True)
+    service_url = models.URLField(blank=True, null=True, unique=True, help_text='This link should be unique')
     service_file = models.FileField(blank=True)
     service_msg = models.CharField(blank=True, null=True, max_length=160,
                                    default='We tried caling you. AMUA Clinic',
