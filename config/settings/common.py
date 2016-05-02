@@ -39,6 +39,7 @@ THIRD_PARTY_APPS = (
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+
 )
 
 # Apps specific for this project go here.
@@ -46,8 +47,12 @@ LOCAL_APPS = (
     # custom users app
     'tunza_v2.users', 'register', 'reminder', 'services', 'vitals', 'call_engine',
     # Your stuff: custom apps go here
+    'django_cron', #cronjobs
 )
 
+CRON_CLASSES = [
+    'call_engine.views.TunzaCronJob'
+]
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -102,7 +107,7 @@ MANAGERS = ADMINS
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-    'default': env.db('DATABASE_URL', default='postgres:///tunza'),
+    'default': env.db('DATABASE_URL', default='postgres:///m-tunza'),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
