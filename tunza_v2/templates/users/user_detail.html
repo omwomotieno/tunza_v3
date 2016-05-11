@@ -18,19 +18,30 @@
                     <!-- Action buttons -->
                     <div class="row">
                         <div class="col-md-12 col-sm-12 ">
-                            <a class="btn btn-primary btn-block" href="{% url 'users:update' %}"><b>Update Username</b></a>
-                            <a class="btn btn-primary btn-block" href="{% url 'account_email' %}"><b>Manage
-                                Email</b></a>
-                            <a class="btn btn-primary btn-block" href="{% url 'reminders:response' %}"><b>Confirm
-                                Appointment</b></a>
-                            <a class="btn btn-primary btn-block" href="{% url 'services:create' %}"><b>Create
-                                Service</b></a>
-                            <a class="btn btn-primary btn-block" href="{% url 'reminders:tomorrow' %}"><b>Immediate
-                                Appointments</b></a>
-                            <a class="btn btn-primary btn-block" href="{% url 'reports:response_report' %}"><b>Call Reports</b></a>
-                            <a class="btn btn-primary btn-block" href="{% url 'reports:patient_report' %}"><b>Patient Reports</b></a>
-                            <a class="btn btn-primary btn-block" href="{% url 'reports:appointment_report' %}"><b>Appointment Reports</b></a>
-                            <a class="btn btn-primary btn-block" href="{% url 'reports:service_report' %}"><b>Service Reports</b></a>
+                            <a class="btn btn-primary btn-block" href="{% url 'reminders:response' %}">
+                                <b>Confirm Appointment</b>
+                            </a>
+                            <a class="btn btn-primary btn-block" href="{% url 'patients:discharge' %}">
+                                <b>Discharge Patient</b>
+                            </a>
+                            <a class="btn btn-primary btn-block" href="{% url 'services:create' %}">
+                                <b>Create Service</b>
+                            </a>
+                            <a class="btn btn-primary btn-block" href="{% url 'reminders:tomorrow' %}">
+                                <b>Immediate Appointments</b>
+                            </a>
+                            <a class="btn btn-primary btn-block" href="{% url 'reports:response_report' %}">
+                                <b>Call Reports</b>
+                            </a>
+                            <a class="btn btn-primary btn-block" href="{% url 'reports:patient_report' %}">
+                                <b>Patient Reports</b>
+                            </a>
+                            <a class="btn btn-primary btn-block" href="{% url 'reports:appointment_report' %}">
+                                <b>Appointment Reports</b>
+                            </a>
+                            <a class="btn btn-primary btn-block" href="{% url 'reports:service_report' %}">
+                                <b>Service Reports</b>
+                            </a>
                         </div>
                     </div>
                     <!-- End Action buttons -->

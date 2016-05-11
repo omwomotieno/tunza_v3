@@ -1,9 +1,11 @@
-
 from django.shortcuts import render
+from django.db.models import Count
 from register.models import Patient
 from reminder.models import Appointment_Response, Reminder
 from call_engine.models import Call_Response
 from services.models import Service
+
+import arrow
 
 
 def AppointmentReports(request):
@@ -40,8 +42,12 @@ def ServiceReports(request):
 
 
 def PatientReports(request):
-    queryset = Patient.objects.all()
+    final_data = []
+
+    list = Patient.objects.values('creation_date').count()
     context = {
-        'queryset': queryset,
+
+        'pat_reg': final_data,
+        'list': list,
     }
     return render(request, 'reports/patients.html', context)

@@ -10,5 +10,4 @@ class ServiceForm(forms.ModelForm):
             'service_about',
 			'service_url',
             'service_msg',
-            'service_file',
 		]

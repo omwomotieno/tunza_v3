@@ -1,2 +1,3 @@
-* * * * * python /home/ubuntu/work/your-project/src/manage.py runcrons > /home/ubuntu/cronjob.log
+* * * * * /home/foxtrot/Dropbox/tunza_v2/manage.py runcrons
+*/5 * * * * source /home/foxtrot/.bashrc && source /home/foxtrot/Dropbox/ENV/bin/activate && /usr/local/bin/python2.7 /home/foxtrot/Dropbox/tunza_v2/manage.py runcrons > /home/foxtrot/cronjob.log
 

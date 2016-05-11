@@ -1,64 +1,38 @@
-{% extends "base.html" %}
+{% extends "users/user_detail.html" %}
 {% load staticfiles %}
 {% load crispy_forms_tags %}
 
 {% block title %}{{ reminders }}{% endblock %}
 
 {% block content %}
-    <div class="row"><br>
-        <div class="col-md-5 col-sm-5">
-            <div class="row">
-                <br>
-                <b>Patient Name: </b>{{ instance_profile.patient }}<br><br>
-                <b>Appointment date: </b>
-                {{ instance_profile.appointment_date }}
-                <br><br>
-                <b>Service: </b>{{ instance_profile.service }}<br><br>
-                <button class="btn btn-primary btn-sm">
-                    <a href="{% url 'reminders:update' id=instance_profile.id %}">
-                        Edit
-                    </a>
-                </button>
-                <button class="btn btn-primary btn-sm">
-                    <a href="{% url 'reminders:delete' id=instance_profile.id %}">
-                        Delete
-                    </a>
-                </button>
-                <button class="btn btn-primary btn-sm">
-                    <a href="{% url 'reminders:list' %}">
-                        Reminder list
-                    </a>
-                </button>
-                <br><br>
-                {% block response %}
-                {% endblock %}
-            </div>
+    <div class="row div_form">
+        <div class="col-md-4 col-sm-4" style="color: royalblue;">
+            <br>
+            <b>Patient Name: </b>{{ instance_profile.patient }}<br><br>
+            <b>Appointment date: </b>
+            {{ instance_profile.appointment_date }}
+            <br><br>
+            <b>Service: </b>{{ instance_profile.service }}<br><br>
+            <button class="btn btn-primary btn-sm">
+                <a href="{% url 'reminders:update' id=instance_profile.id %}">
+                    Edit
+                </a>
+            </button>
+            <button class="btn btn-primary btn-sm">
+                <a href="{% url 'reminders:delete' id=instance_profile.id %}">
+                    Delete
+                </a>
+            </button>
+            <button class="btn btn-primary btn-sm">
+                <a href="{% url 'reminders:list' %}">
+                    Reminder list
+                </a>
+            </button>
+            <br><br>
+            {% block response %}
+            {% endblock %}
         </div>
     </div>
-    <div class="col-md-5 col-sm-5">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="jumbotron" style="padding: inherit">
 
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="jumbotron" style="padding: inherit">
-
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="jumbotron" style="padding: inherit">
-
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
 {% endblock content %}
 

@@ -6,7 +6,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Patient
 from reminder.models import Reminder
 from services.models import Service
-from .forms import PatientForm
+from .forms import PatientForm, DischargeForm
 import datetime
 
 
@@ -38,12 +38,6 @@ def update(request, id=None):
         instance_profile.save()
         return HttpResponseRedirect(instance_profile.get_absolute_url())
 
-    context = {
-        'instance_profile': instance_profile,
-        'form': form,
-    }
-    return render(request, 'patients/create.html', context)
-
 
 def delete(request, id=None):
     if not request.user.is_authenticated():
@@ -59,7 +53,7 @@ def list(request, id=None):
         return render(request, '404.html')
     patient_count = Patient.objects.count()
     queryset_list = Patient.objects.all()
-    queryset_order = queryset_list.order_by('patient_name')
+    queryset_order = queryset_list.order_by('patient_name').filter(discharge=False)
 
     query = request.GET.get('q')
     if query:
@@ -108,3 +102,15 @@ def profile(request, id=None):
         # 'appointments': appointments,
     }
     return render(request, 'patients/profile.html', context)
+
+
+def discharge(request):
+    if not request.user.is_authenticated():
+        return render(request, '404.html')
+    form = DischargeForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+            messages.success(request, 'Patient Successfully Discharged')
+            return redirect('users:detail')

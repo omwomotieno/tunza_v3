@@ -122,7 +122,15 @@ def list(request):
 
 
 def response(request):
-    pass
+    if not request.user.is_authenticated():
+        return render(request, '404.html')
+    form = AppointmentResponseForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+            messages.success(request, 'Attendance Confirmed')
+            return redirect('users:detail')
 
 
 def tomorrow(request):

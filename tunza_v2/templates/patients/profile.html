@@ -5,48 +5,54 @@
 
 {% block content %}
     <div class="row"><br>
-        <div class="col-md-5 col-sm-5">
-            <div class="row">
-                <div class="well">
-                    <b>Patient Name: </b>{{ instance_profile.patient_name }}<br><br>
-                    <b>Days to Delivery: </b>{{ instance_delivery }}<br><br>
-                    <b>Expected delivery date: </b>{{ instance_edd }}<br><br>
-                    <b>Discharge Status: </b>{{ instance_profile.discharge }}<br><br>
-                    {% if instance_profile.discharge %}
-                        <b>Discharged on: </b>{{ instance_profile.discharge_date }}<br><br>
-                    {% endif %}
-                    <button class="btn btn-primary btn-sm">
-                        <a href="{% url 'patients:update' id=instance_profile.id %}">Edit</a>
-                    </button>
-                    <button class="btn btn-primary btn-sm">
-                        <a href="{% url 'patients:delete' id=instance_profile.id %}">Delete</a>
-                    </button>
-                    <button class="btn btn-primary btn-sm">
-                        <a href="{% url 'patients:list' %}">Patient list</a>
-                    </button>
-                    <button class="btn btn-primary btn-sm">
-                        <a href="{% url 'reminders:create' %}">Book appointment</a>
-                    </button>
-                </div>
+    <div class="col-md-4 col-sm-4">
+        <div class="row">
+            <div class="well">
+                <b>Patient Name: </b>{{ instance_profile.patient_name }}<br><br>
+                <b>Expected delivery date: </b>{{ instance_edd }}<br><br>
+                <b>Discharge Status: </b>{{ instance_profile.discharged }}<br><br>
+                {% if instance_profile.discharged %}
+                    <b>Discharged on: </b>{{ instance_profile.discharge_date }}<br><br>
+                {% endif %}
 
+                <b>Days to Delivery: </b>{{ instance_delivery }}<br><br>
+                <button class="btn btn-primary btn-sm">
+                    <a href="{% url 'patients:update' id=instance_profile.id %}">Edit</a>
+                </button>
+                <button class="btn btn-primary btn-sm">
+                    <a href="{% url 'patients:delete' id=instance_profile.id %}">Delete</a>
+                </button>
+                <button class="btn btn-primary btn-sm">
+                    <a href="{% url 'patients:list' %}">Patient list</a>
+                </button>
             </div>
+
         </div>
-        <div class="col-md-5 col-sm-5">
-            {% if appointment %}
-                <b style="color:lime">Pending Appointments </b><br>
-                <ul>
-                    {% for obj in appointment %}
-                        <a href="{{ obj.service.get_absolute_url }}">
-                            <b style="color:royalblue">{{ obj.service.service_name }}</b></a>&nbsp;on
-                        <b>{{ obj.appointment_date }}</b>&nbsp;
-                        to be reminded on&nbsp;{{ obj.date_of_call }}&nbsp;
-                        at&nbsp;{{ obj.time_of_call }}<br><br>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <b>You have no appointments</b>
-            {% endif %}
-        </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+        {% if appointment %}
+            <b style="color:lime">Pending Appointments </b><br>
+            <ul>
+                {% for obj in appointment %}
+                    <a href="{{ obj.service.get_absolute_url }}">
+                        <b style="color:royalblue">{{ obj.service.service_name }}</b></a>&nbsp;on
+                    <b>{{ obj.appointment_date }}</b>&nbsp;
+                    to be reminded on&nbsp;{{ obj.date_of_call }}&nbsp;
+                    at&nbsp;{{ obj.time_of_call }}<br><br>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <b>You have no appointments</b>
+        {% endif %}
+
+    </div>
+    <div class="col-md-2 col-sm-2">
+        <button class="btn btn-primary btn-sm" style="float: right;">
+            <a href="{% url 'reminders:create' %}">
+                <i class="fa fa-plus-circle"></i>
+                <b>Appointment</b>
+            </a>
+        </button>
     </div>
 {% endblock content %}
 

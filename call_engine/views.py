@@ -1,10 +1,8 @@
 from datetime import timedelta, datetime
-from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.shortcuts import get_list_or_404
 from django_cron import CronJobBase, Schedule
 from .models import Call_Response
-from reminder.models import Appointment_Response
 from reminder.models import Reminder
 from AfricasTalkingGateway import AfricasTalkingGateway, AfricasTalkingGatewayException
 
@@ -27,19 +25,14 @@ def voice_callback(request):
         # retrieving call_back params
         is_active = str(1)  # request.GET.get('isActive', '')
         callTo = '+254720955704'  # request.GET.get('callerNumber', '')
-        callTo = str(callTo)
 
-        # retrieving service url from callerNumber
-        try:
-            patient_contact = Reminder.objects.filter \
-                (patient__patient_contact=callTo).filter(time_of_call=curr_time)
-        except ObjectDoesNotExist:
-            return None
+        # retrieving service url and msg from callerNumber
 
+        patient_contact = Reminder.objects.filter \
+            (patient__patient_contact=callTo).filter(time_of_call=curr_time)
         instance_url = patient_contact.values_list('service__service_url', flat=True)
         instance_msg = patient_contact.values_list('service__service_msg', flat=True)
-        instance_msg = instance_msg[0]
-
+        print instance_msg
         if is_active == str(0):
             try:
                 gateway.sendMessage(callTo, instance_msg)
@@ -53,10 +46,10 @@ def voice_callback(request):
                 return resp
 
         elif is_active == str(1):
+            # set call_response to True
             try:
                 response = '<?xml version="1.0" encoding="UTF-8"?>'
                 response += '<Response>'
-                # response += '<Play url="http://www.kozco.com/tech/piano2-Audacity1.2.5.mp3"/>'
                 response += '<Play url="'
                 response += instance_url[0]
                 response += '"/>'
